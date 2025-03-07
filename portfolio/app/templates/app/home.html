@@ -1,0 +1,286 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to My Portfolio{% endblock %}
+
+{% block hero %}
+<section class="hero">
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="hero-content text-white">
+            <span class="badge bg-primary mb-3">Disponible pour de nouveaux projets</span>
+            <h1 class="display-1 fw-bold mb-4">
+                Mamadou DIAKHATE
+            </h1>
+            <p class="lead mb-5">Spécialiste en <span class="typed-text"></span></p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary me-3">
+                    <i class="fas fa-user-circle me-2"></i>Mon Profil
+                </a>
+                <a href="#contact" class="btn btn-outline-light">
+                    <i class="fas fa-paper-plane me-2"></i>Me Contacter
+                </a>
+            </div>
+            <div class="social-links mt-5">
+                <a href="https://github.com/MamadouDiakhate" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mamadou-diakhate" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:mamadou.data.dev@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<!-- About Section -->
+<section id="about" class="py-5" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">À Propos</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-5 mb-4 mb-lg-0">
+                <div class="about-image-wrapper">
+                    <img src="{% static 'app/images/profile.jpg' %}" alt="Mamadou DIAKHATE" class="img-fluid rounded-3">
+                    <div class="experience-badge">
+                        <span class="number">3+</span>
+                        <span class="text">ans d'expérience</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="about-content">
+                    <h3 class="mb-4">Ingénieur Backend & Data Engineer spécialisé dans le secteur de la santé</h3>
+                    <p class="lead mb-4">
+                        Passionné par l'innovation technologique dans le domaine médical, je développe des solutions 
+                        qui transforment la gestion des données de santé.
+                    </p>
+                    <p class="mb-4">
+                        Mon expertise s'étend de la conception d'architectures backend robustes à l'optimisation 
+                        des flux de données hospitaliers, en passant par le déploiement de solutions cloud scalables. 
+                        Je m'engage à créer des systèmes performants qui améliorent concrètement l'efficacité des 
+                        établissements de santé.
+                    </p>
+                    
+                    <div class="key-skills mb-4">
+                        <h4 class="mb-3">Domaines d'expertise</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="expertise-card">
+                                    <i class="fas fa-server"></i>
+                                    <h5>Backend Development</h5>
+                                    <p>Python, Django, FastAPI, Node.js</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="expertise-card">
+                                    <i class="fas fa-database"></i>
+                                    <h5>Data Engineering</h5>
+                                    <p>Spark, Airflow, ETL pipelines</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="expertise-card">
+                                    <i class="fas fa-cloud"></i>
+                                    <h5>Cloud & DevOps</h5>
+                                    <p>AWS, Docker, Kubernetes</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="expertise-card">
+                                    <i class="fas fa-chart-network"></i>
+                                    <h5>Base de données</h5>
+                                    <p>PostgreSQL, MongoDB, Redis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="{% static 'app/CV_Mamadou.pdf' %}" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-download me-2"></i>Télécharger CV
+                        </a>
+                        <a href="#contact" class="btn btn-outline ms-3">
+                            <i class="fas fa-handshake me-2"></i>Collaborer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section with Categories -->
+<section id="skills" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">Compétences</h2>
+        
+        <!-- Backend Skills -->
+        <div class="skill-category mb-5">
+            <h3 class="category-title">
+                <i class="fas fa-server me-2"></i>Backend Development
+            </h3>
+            <div class="row">
+                {% for skill in backend_skills %}
+                <div class="col-md-6 mb-4">
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1|stringformat:'d'}}00">
+                        <div class="skill-header">
+                            <h5>{{ skill.name }}</h5>
+                            <span class="skill-level">{{ skill.level }}%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" 
+                                 style="width: 0%" 
+                                 data-value="{{ skill.level }}"
+                                 aria-valuenow="{{ skill.level }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Data Engineering Skills -->
+        <div class="skill-category mb-5">
+            <h3 class="category-title">
+                <i class="fas fa-database me-2"></i>Data Engineering
+            </h3>
+            <!-- Similar structure as backend skills -->
+        </div>
+
+        <!-- Cloud & DevOps Skills -->
+        <div class="skill-category">
+            <h3 class="category-title">
+                <i class="fas fa-cloud me-2"></i>Cloud & DevOps
+            </h3>
+            <!-- Similar structure as backend skills -->
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">Expérience</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-date">2023 - Présent</div>
+                <div class="timeline-content">
+                    <h4>Lead Backend Developer</h4>
+                    <h5>Hôpital Foch - Paris</h5>
+                    <ul>
+                        <li>Architecture et développement d'une plateforme de gestion des flux patients</li>
+                        <li>Optimisation des performances réduisant le temps de traitement de 40%</li>
+                        <li>Mise en place d'une architecture microservices avec Docker et Kubernetes</li>
+                        <li>Direction d'une équipe de 4 développeurs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-date">2021 - 2023</div>
+                <div class="timeline-content">
+                    <h4>Data Engineer</h4>
+                    <h5>AP-HP - Paris</h5>
+                    <ul>
+                        <li>Développement de pipelines ETL pour l'analyse de données médicales</li>
+                        <li>Implémentation d'algorithmes de ML pour la prédiction des flux patients</li>
+                        <li>Création d'APIs RESTful pour l'intégration des données</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-date">2020 - 2021</div>
+                <div class="timeline-content">
+                    <h4>Backend Developer</h4>
+                    <h5>Doctolib - Paris</h5>
+                    <ul>
+                        <li>Développement de fonctionnalités backend pour la plateforme de téléconsultation</li>
+                        <li>Optimisation des requêtes SQL améliorant les performances de 30%</li>
+                        <li>Intégration de systèmes de paiement sécurisés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-5" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">Projets Réalisés</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card project-card">
+                    <img src="{% static 'app/images/project1.jpg' %}" class="card-img-top" alt="Patient Flow Analytics">
+                    <div class="card-body">
+                        <h4 class="card-title">Patient Flow Analytics</h4>
+                        <p class="card-text">
+                            Plateforme d'analyse prédictive des flux patients utilisant Python, 
+                            Django et Machine Learning pour optimiser la gestion hospitalière.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">Voir le projet</a>
+                            <a href="https://github.com/MamadouDiakhate/patient-flow" class="btn btn-outline" target="_blank">
+                                <i class="fab fa-github me-2"></i>Code source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more projects similarly -->
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="contact-card text-center">
+                    <h3 class="mb-4">Intéressé par une collaboration ?</h3>
+                    <p class="lead mb-5">
+                        Je suis ouvert aux opportunités de projets innovants dans le secteur de la santé. 
+                        N'hésitez pas à me contacter pour discuter de vos besoins.
+                    </p>
+                    <div class="contact-methods">
+                        <div class="row">
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h5>Email</h5>
+                                <p>mamadou.data.dev@gmail.com</p>
+                            </div>
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h5>Téléphone</h5>
+                                <p>+33 6 21 83 62 83</p>
+                            </div>
+                            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h5>Localisation</h5>
+                                <p>Paris, France</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

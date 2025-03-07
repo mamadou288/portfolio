@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block title %}{{ experience.title }} at {{ experience.company }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ experience.title }}</h1>
+        <h3 class="card-subtitle mb-3 text-muted">{{ experience.company }}</h3>
+        <p class="text-muted">
+            {{ experience.start_date|date:"F Y" }} - 
+            {% if experience.end_date %}
+                {{ experience.end_date|date:"F Y" }}
+            {% else %}
+                Present
+            {% endif %}
+        </p>
+        <p class="card-text">{{ experience.description|linebreaks }}</p>
+        <a href="{% url 'app:experience_list' %}" class="btn btn-primary">Back to Experience</a>
+    </div>
+</div>
+{% endblock %} 

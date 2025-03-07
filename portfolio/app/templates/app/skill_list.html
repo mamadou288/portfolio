@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<h1>Skills</h1>
+<div class="row">
+    {% for skill in skills %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ skill.name }}</h5>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" 
+                         style="width: {% widthratio skill.level 100 100 %}%" 
+                         aria-valuenow="{{ skill.level }}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">
+                        {{ skill.level }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 
